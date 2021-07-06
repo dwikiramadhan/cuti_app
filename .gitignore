@@ -1,0 +1,39 @@
+.DS_Store
+
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+!application/*/.htaccess
+
+composer.lock
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+# /vendor/
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+compare_file.sql
+cms_registrasi_matched.json
+cms_registrasi_not_matched.json
+cms_transaksi_matched.json
+cms_transaksi_not_matched.json
+cms_produksi_matched.json
+cms_produksi_not_matched.json
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/
