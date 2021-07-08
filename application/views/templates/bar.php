@@ -226,6 +226,7 @@
                 <li class="<?= $uri == 'dashboard' ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>dashboard"><i class="icon-home"></i><span>Dashboard</span></a></li>
                 <li class="<?= $uri == 'employee' ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>employee"><i class="icon-diamond"></i><span>Master Pekerja</span></a></li>
                 <li class="<?= $uri == 'spd' ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>spd"><i class="icon-diamond"></i><span>SPD</span></a></li>
+                <li class="<?= $uri == 'cuti' ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>cuti"><i class="icon-diamond"></i><span>Cuti</span></a></li>
             </ul>
         </nav>
     </div>

@@ -3,7 +3,7 @@
     <div class="block-header">
         <div class="row clearfix">
             <div class="col-md-6 col-sm-12">
-                <h2>Rencana Perjalanan</h2>
+                <h2>Record Cuti</h2>
             </div>
         </div>
     </div>
@@ -20,12 +20,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Pekerja</th>
-                                        <th>Tanggal Perjalanan</th>
-                                        <th>Item</th>
-                                        <th>Is Jabodetabek</th>
-                                        <th>Jenis Transport</th>
-                                        <th>Destinasi</th>
-                                        <th>Nominal</th>
+                                        <th>Tanggal Cuti</th>
+                                        <th>Keterangan</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,12 +32,8 @@
                                         <tr>
                                             <td><?= $no ?></td>
                                             <td><?= $key->nama_pekerja ?></td>
-                                            <td><?= $key->tgl_perjalanan ?></td>
-                                            <td><?= $key->item ?></td>
-                                            <td><?= $key->is_jabodetabek ?></td>
-                                            <td><?= $key->jenis_transport ?></td>
-                                            <td><?= $key->destinasi ?></td>
-                                            <td><?= $key->nominal ?></td>
+                                            <td><?= $key->tgl_cuti ?></td>
+                                            <td><?= $key->keterangan ?></td>
                                         </tr>
                                     <?php
                                         $no++;

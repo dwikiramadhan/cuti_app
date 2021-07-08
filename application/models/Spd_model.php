@@ -20,8 +20,9 @@ class Spd_model extends CI_Model
 
 	function get_rencana_perjalanan()
 	{
-		$this->db->select('*');
+		$this->db->select('rencana_perjalanan.*, master_pekerja.nama_pekerja');
 		$this->db->from('rencana_perjalanan');
+		$this->db->join('master_pekerja', 'rencana_perjalanan.id_pekerja = master_pekerja.id', 'inner');
 		$this->db->order_by('created_at', 'DESC');
 		$query = $this->db->get();
 		return $query->result();
