@@ -45,7 +45,10 @@
                                     ?>
                                         <tr>
                                             <td><?= $no ?></td>
-                                            <td><a href="<?php echo base_url(); ?>employee/add_cuti/<?=$key->id?>" class="btn btn-success">Add Cuti</a></td>
+                                            <td>
+                                                <a href="<?php echo base_url(); ?>employee/add_cuti/<?=$key->id?>" class="btn btn-success">Add Cuti</a>
+                                                <a href="<?php echo base_url(); ?>spd/add_spd/<?=$key->id?>" class="btn btn-primary">Add SPD</a>
+                                            </td>
                                             <td><?= $key->nama_pekerja ?>, <?= $key->gelar ?></td>
                                             <td><?= $key->fungsi ?></td>
                                             <td><?= $key->nama_jabatan ?></td>

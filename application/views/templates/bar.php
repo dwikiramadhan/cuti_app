@@ -225,6 +225,7 @@
             <ul id="main-menu" class="metismenu">
                 <li class="<?= $uri == 'dashboard' ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>dashboard"><i class="icon-home"></i><span>Dashboard</span></a></li>
                 <li class="<?= $uri == 'employee' ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>employee"><i class="icon-diamond"></i><span>Master Pekerja</span></a></li>
+                <li class="<?= $uri == 'spd' ? 'active' : '' ?>"><a href="<?php echo base_url(); ?>spd"><i class="icon-diamond"></i><span>SPD</span></a></li>
             </ul>
         </nav>
     </div>

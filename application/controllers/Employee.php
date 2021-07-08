@@ -7,7 +7,6 @@ class Employee extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->library('form_validation');
-		$this->load->model('data_model');
 		$this->load->model('employee_model');
 	}
 
@@ -46,17 +45,15 @@ class Employee extends CI_Controller
 
 		$get_sisa_cuti = $this->employee_model->get_sisa_cuti_by_id_pekerja_new($id, $bln_tmt_pwtt);
 		$jlh_cuti = $get_sisa_cuti[0]->total;
-		// return var_dump($get_sisa_cuti);
-		// $get_sisa_cuti = $this->employee_model->get_sisa_cuti_by_id_pekerja($id);
-		// if (count($get_sisa_cuti) > 0) {
-		// 	$data['sisa_cuti'] = $get_sisa_cuti[0]->sisa_tahun_ini;
-		// } else {
+
 		if ($lama_bekerja % 3 == 0) {
 			$data['sisa_cuti'] = 26 - (int)$jlh_cuti;
+			$data['sisa_sebelumnya'] = NULL;
 		} else {
+			$sisa_sebelumnya = $this->employee_model->get_sisa_cuti_by_id_pekerja_limit($id);
 			$data['sisa_cuti'] = 12 - (int)$jlh_cuti;
+			$data['sisa_sebelumnya'] = $sisa_sebelumnya ? $sisa_sebelumnya[0]->sisa_sebelumnya : '0';
 		}
-		// };
 
 		$data['record'] = $this->employee_model->get_employee_by_id($id);
 		$data['lama_bekerja'] = $lama_bekerja;
@@ -89,11 +86,13 @@ class Employee extends CI_Controller
 				$this->employee_model->new_sisa_cuti($sisa_cuti);
 			}else{
 				$get_sisa_cuti_limit = $this->employee_model->get_sisa_cuti_by_id_pekerja_limit($id_pekerja);
-				$sisa_cuti['sisa_sebelumnya'] 	= $get_sisa_cuti_limit[0]->sisa_sebelumnya - 1;
-				$sisa_cuti['id_pekerja'] 		= $id_pekerja;
-				$sisa_cuti['created_at'] 		= $date;
-
-				$this->employee_model->new_sisa_cuti($sisa_cuti);
+				if ($get_sisa_cuti_limit[0]->sisa_sebelumnya > 0) {
+					$sisa_cuti['sisa_sebelumnya'] 	= $get_sisa_cuti_limit[0]->sisa_sebelumnya - 1;
+					$sisa_cuti['id_pekerja'] 		= $id_pekerja;
+					$sisa_cuti['created_at'] 		= $date;
+	
+					$this->employee_model->new_sisa_cuti($sisa_cuti);
+				}
 			}
 		}
 

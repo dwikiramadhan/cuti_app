@@ -41,12 +41,22 @@ class Employee_model extends CI_Model
 
 	function get_sisa_cuti_by_id_pekerja_new($id, $bln_tmt_pwtt)
 	{
+		date_default_timezone_set('Asia/Jakarta');
+		$date = date("Y-m-d H:i:s");
+
 		$this_year = date("Y").'-'.$bln_tmt_pwtt.'-01';
 		$next_year = date("Y", strtotime('+1 year')).'-'.$bln_tmt_pwtt.'-01';
+		$before = date("Y", strtotime('-1 year')).'-'.$bln_tmt_pwtt.'-01';
+		
 		$this->db->select('COUNT(id) as total');
 		$this->db->from('cuti');
 		$this->db->where('id_pekerja', $id);
-		$this->db->where("(tgl_cuti BETWEEN '$this_year' AND '$next_year')");
+		if ($date < date($this_year)) {
+			# code...
+			$this->db->where("(tgl_cuti BETWEEN '$before' AND '$this_year')");
+		}else{
+			$this->db->where("(tgl_cuti BETWEEN '$this_year' AND '$next_year')");
+		}
 		$query = $this->db->get();
 		return $query->result();
 	}

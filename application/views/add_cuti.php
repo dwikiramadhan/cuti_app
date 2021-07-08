@@ -28,12 +28,14 @@
                             <div class="form-row">
                                 <div class="form-group col">
                                     <label class="col-form-label">Mulai Bekerja</label>
-                                    <input type="text" class="form-control" name="mulai" id="mulai" value="<?= date('m-Y', strtotime($record[0]->tmt_gol_upah)) ?>" readonly>
+                                    <input type="text" class="form-control" name="mulai" id="mulai" value="<?= date('m-Y', strtotime($record[0]->tmt_pwtt)) ?>" readonly>
                                 </div>
                                 <div class="form-group col">
                                     <label class="col-form-label">Lama Bekerja</label>
                                     <input type="text" class="form-control" name="lama_bekerja" id="lama_bekerja" value="<?= $lama_bekerja ?>" readonly>
                                 </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col">
                                     <label class="col-form-label">Jlh cuti didapat</label>
                                     <input type="text" class="form-control" name="jatah_cuti" id="jatah_cuti" value="<?= $jlh_cuti ?>" readonly>
@@ -42,6 +44,16 @@
                                     <label class="col-form-label">Sisa cuti</label>
                                     <input type="text" class="form-control" name="lama_bekerja" id="lama_bekerja" value="<?= $sisa_cuti ?>" readonly>
                                 </div>
+                                <?php
+                                if ($sisa_sebelumnya != NULL) {
+                                ?>
+                                    <div class="form-group col">
+                                        <label class="col-form-label">Sisa cuti sebelumnya</label>
+                                        <input type="text" class="form-control" name="sisa_sebelumnya" id="sisa_sebelumnya" value="<?= $sisa_sebelumnya ?>" readonly>
+                                    </div>
+                                <?php
+                                }
+                                ?>
                             </div>
                             <div class="col-12">
                                 <div class="form-group row">
