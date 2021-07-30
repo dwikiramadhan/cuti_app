@@ -1,4 +1,7 @@
 <?php
+
+use SebastianBergmann\Environment\Console;
+
 defined('BASEPATH') or exit('No direct script access allowed');
 
 class Spd extends CI_Controller
@@ -15,6 +18,41 @@ class Spd extends CI_Controller
 	{
 		$data['record'] = $this->spd_model->get_rencana_perjalanan();
 		$this->template->load('templates/contents', 'rencana_perjalanan', $data);
+	}
+
+	public function detail()
+	{
+		$kode = $this->uri->segment(3);
+		// $kode = 'SPD20210729111606';
+		$spd = $this->spd_model->get_rencana_perjalanan_by_kode($kode);
+		// echo '<pre>';
+		// return var_dump($spd);
+		// echo '</pre>';
+		// $temp = array();
+		// $spd = $this->spd_model->get_spd();
+		// foreach ($spd as $s) {
+		// 	$gol = explode(",", $s->gol_upah);
+		// 	foreach ($gol as $g) {
+		// 		if ($employee[0]->gol_upah == $g) {
+		// 			array_push($temp, $s);
+		// 		}
+		// 	}
+		// }
+		// echo '<pre>';
+		// return var_dump($temp);
+		// echo '</pre>';
+
+		// $data['record'] = $employee;
+		$data['data_spd'] = $spd;
+		$this->template->load('templates/contents', 'detail_spd', $data);
+	}
+
+	public function print_spd()
+	{
+		$kode = $this->uri->segment(3);
+		$spd = $this->spd_model->get_rencana_perjalanan_by_kode($kode);
+		$data['data_spd'] = $spd;
+		$this->template->load('templates/contents_print', 'detail_spd', $data);
 	}
 
 	public function ajax_sub_spd($item)
@@ -36,7 +74,7 @@ class Spd extends CI_Controller
 
 		$employee = $this->employee_model->get_employee_by_id($id);
 		$temp = array();
-		
+
 		$jabatan = $employee[0]->kode_jabatan;
 		if ($jabatan == 'Vice President' || $jabatan == 'Direktur' || $jabatan == 'Manager' || $jabatan == 'Wakil Direktur' || $jabatan == 'Asisten Manager' || $jabatan == 'Ka.') {
 			$spd_jabatan = $this->spd_model->get_spd_jabatan();
@@ -59,7 +97,6 @@ class Spd extends CI_Controller
 
 		$sub_spd = $this->spd_model->get_spd_by_item_destinasi($jenis_transport, $destinasi);
 		array_push($temp, $sub_spd[0]);
-
 
 		echo json_encode($temp);
 	}
@@ -122,22 +159,34 @@ class Spd extends CI_Controller
 	public function save_spd()
 	{
 		date_default_timezone_set('Asia/Jakarta');
-        $date = date("Y-m-d H:i:s");
+		$date = date("Y-m-d H:i:s");
 
 		$id_pekerja = $this->input->post('id_pekerja');
+		$kode = 'SPD' . date("YmdHis");
 		$is_jabodetabek = $this->input->post('is_jabodetabek');
 		$jenis_transport = $this->input->post('jenis_transport');
 		$destinasi = $this->input->post('destinasi');
-		$tgl_perjalanan = $this->input->post('tgl_perjalanan');
-		$test = $this->count_budget($id_pekerja, $is_jabodetabek, $jenis_transport, $destinasi);
-		foreach ($test as $t) {
+		$tgl_mulai_perjalanan = $this->input->post('tgl_mulai_perjalanan');
+		$tgl_berakhir_perjalanan = $this->input->post('tgl_berakhir_perjalanan');
+		$item_support = $this->input->post('choose');
+
+		$tgl1 = strtotime($tgl_mulai_perjalanan);
+		$tgl2 = strtotime($tgl_berakhir_perjalanan);
+		$diff = abs($tgl2 - $tgl1);
+		$jlh_hari = floor($diff/(60*60*24));
+
+		// $test = $this->count_budget($id_pekerja, $is_jabodetabek, $jenis_transport, $destinasi);
+		foreach ($item_support as $it) {
+			$convert_array = explode(",", $it);
 			$data['id_pekerja'] = $id_pekerja;
-			$data['tgl_perjalanan'] = $tgl_perjalanan;
+			$data['kode'] = $kode;
+			$data['tgl_mulai_perjalanan'] = $tgl_mulai_perjalanan;
+			$data['tgl_berakhir_perjalanan'] = $tgl_berakhir_perjalanan;
 			$data['is_jabodetabek'] = $is_jabodetabek;
 			$data['jenis_transport'] = $jenis_transport;
 			$data['destinasi'] = $destinasi;
-			$data['item'] = $t->item;
-			$data['nominal'] = $t->nominal;
+			$data['item'] = $convert_array[0];
+			$data['nominal'] = $convert_array[1] * $jlh_hari;
 			$data['created_at'] = $date;
 			$data['updated_at'] = $date;
 
@@ -145,10 +194,10 @@ class Spd extends CI_Controller
 		}
 
 		$this->session->set_flashdata('message', '<div class="alert alert-primary" role="alert">
-                	Data berhasil di simpan <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                	<span aria-hidden="true">&times;</span>
-                	</button>
-                	</div>');
-        redirect('employee');
+		        	Data berhasil di simpan <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		        	<span aria-hidden="true">&times;</span>
+		        	</button>
+		        	</div>');
+		redirect('employee');
 	}
 }

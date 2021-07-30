@@ -40,13 +40,13 @@
 <body class="theme-orange">
 
     <!-- Page Loader -->
-    <div class="page-loader-wrapper">
+    <!-- <div class="page-loader-wrapper">
         <div class="loader">
             <div class="m-t-30"><img src="<?php echo base_url(); ?>assets/images/icon-light.svg" width="48" height="48" alt="HexaBit"></div>
             <p>Please wait...</p>
         </div>
-    </div>
+    </div> -->
     <!-- Overlay For Sidebars -->
-    <div class="overlay"></div>
+    <!-- <div class="overlay"></div> -->
 
     <div id="wrapper">

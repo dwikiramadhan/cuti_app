@@ -16,4 +16,12 @@ class Cuti extends CI_Controller
 		$data['record'] = $this->cuti_model->get_cuti();
 		$this->template->load('templates/contents', 'cuti', $data);
 	}
+
+	public function detail()
+	{
+		$id = $this->uri->segment(3);
+		$cuti = $this->cuti_model->get_cuti_by_id($id);
+		$data['record'] = $cuti;
+		$this->template->load('templates/contents', 'detail_cuti', $data);
+	}
 }

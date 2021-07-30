@@ -23,7 +23,18 @@ class Spd_model extends CI_Model
 		$this->db->select('rencana_perjalanan.*, master_pekerja.nama_pekerja');
 		$this->db->from('rencana_perjalanan');
 		$this->db->join('master_pekerja', 'rencana_perjalanan.id_pekerja = master_pekerja.id', 'inner');
+		$this->db->group_by('kode');
 		$this->db->order_by('created_at', 'DESC');
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function get_rencana_perjalanan_by_kode($kode)
+	{
+		$this->db->select('rencana_perjalanan.*, master_pekerja.*');
+		$this->db->from('rencana_perjalanan');
+		$this->db->join('master_pekerja', 'rencana_perjalanan.id_pekerja = master_pekerja.id', 'inner');
+		$this->db->where('rencana_perjalanan.kode', $kode);
 		$query = $this->db->get();
 		return $query->result();
 	}

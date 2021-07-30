@@ -22,6 +22,7 @@
                                         <th>Pekerja</th>
                                         <th>Tanggal Cuti</th>
                                         <th>Keterangan</th>
+                                        <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -34,6 +35,7 @@
                                             <td><?= $key->nama_pekerja ?></td>
                                             <td><?= $key->tgl_cuti ?></td>
                                             <td><?= $key->keterangan ?></td>
+                                            <td><a class="btn btn-primary" href="<?php echo base_url(); ?>cuti/detail/<?=$key->id?>"><i class="fa fa-eye"></i></a></td>
                                         </tr>
                                     <?php
                                         $no++;

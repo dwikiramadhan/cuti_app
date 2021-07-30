@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 08, 2021 at 02:09 AM
+-- Generation Time: Jul 30, 2021 at 03:56 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -41,16 +41,7 @@ CREATE TABLE `cuti` (
 --
 
 INSERT INTO `cuti` (`id`, `id_pekerja`, `tgl_cuti`, `keterangan`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '2021-08-12', 'Test', 1, '2021-07-04 23:44:25', '2021-07-04 16:44:25'),
-(3, 1, '2021-09-15', 'Test 2', 1, '2021-07-04 23:57:30', '2021-07-04 16:57:30'),
-(4, 1, '2021-09-15', 'Test', 1, '2021-07-05 13:43:13', '2021-07-05 06:43:13'),
-(5, 1, '2021-07-24', 'TEST', 1, '2021-07-05 16:51:18', '2021-07-05 09:51:18'),
-(6, 1, '2021-07-31', 'Tet', 1, '2021-07-06 17:45:00', '2021-07-06 10:45:00'),
-(7, 1, '2021-07-31', 'Test', 1, '2021-07-06 18:24:16', '2021-07-06 11:24:16'),
-(8, 1, '2021-07-23', 'Test', 1, '2021-07-06 18:26:50', '2021-07-06 11:26:50'),
-(9, 1, '2021-07-30', 'Wat', 1, '2021-07-06 18:29:52', '2021-07-06 11:29:52'),
-(10, 3, '2021-07-22', 'Test', 1, '2021-07-06 18:31:08', '2021-07-06 11:31:08'),
-(11, 1, '2021-07-07', 'Test', 1, '2021-07-08 09:07:26', '2021-07-08 02:07:26');
+(1, 1, '2021-07-31', 'Pindahan', 1, '2021-07-30 22:55:10', '2021-07-30 15:55:10');
 
 -- --------------------------------------------------------
 
@@ -260,7 +251,9 @@ INSERT INTO `master_pekerja` (`id`, `fungsi`, `nama_jabatan`, `kode_jabatan`, `b
 CREATE TABLE `rencana_perjalanan` (
   `id` int(11) NOT NULL,
   `id_pekerja` int(11) NOT NULL,
-  `tgl_perjalanan` datetime NOT NULL,
+  `kode` varchar(100) NOT NULL,
+  `tgl_mulai_perjalanan` datetime NOT NULL,
+  `tgl_berakhir_perjalanan` datetime DEFAULT NULL,
   `is_jabodetabek` varchar(100) NOT NULL,
   `jenis_transport` varchar(50) NOT NULL,
   `destinasi` varchar(50) NOT NULL,
@@ -274,23 +267,10 @@ CREATE TABLE `rencana_perjalanan` (
 -- Dumping data for table `rencana_perjalanan`
 --
 
-INSERT INTO `rencana_perjalanan` (`id`, `id_pekerja`, `tgl_perjalanan`, `is_jabodetabek`, `jenis_transport`, `destinasi`, `item`, `nominal`, `created_at`, `updated_at`) VALUES
-(1, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'Akomodasi', 225000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(2, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'Transport Lokal Jabodetabek', 100000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(3, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'Transport Lokal Non Jabodetabek', 75000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(4, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'Makan Pagi', 50000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(5, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'Makan Siang', 90000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(6, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'Makan Malam', 90000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(7, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'Uang Harian', 135000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(8, 1, '2021-07-09 00:00:00', 'Jabodetabek', 'transport_bandara', 'Balikpapan', 'transport_bandara', 75000, '2021-07-07 21:49:08', '2021-07-07 14:49:08'),
-(17, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Akomodasi', 225000, '2021-07-08 09:06:58', '2021-07-08 02:06:58'),
-(18, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Jabodetabek', 100000, '2021-07-08 09:06:58', '2021-07-08 02:06:58'),
-(19, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Non Jabodetabek', 75000, '2021-07-08 09:06:58', '2021-07-08 02:06:58'),
-(20, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Makan Pagi', 50000, '2021-07-08 09:06:58', '2021-07-08 02:06:58'),
-(21, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Makan Siang', 90000, '2021-07-08 09:06:58', '2021-07-08 02:06:58'),
-(22, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Makan Malam', 90000, '2021-07-08 09:06:58', '2021-07-08 02:06:58'),
-(23, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Uang Harian', 135000, '2021-07-08 09:06:58', '2021-07-08 02:06:58'),
-(24, 1, '2021-07-17 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'transport_bandara', 150000, '2021-07-08 09:06:58', '2021-07-08 02:06:58');
+INSERT INTO `rencana_perjalanan` (`id`, `id_pekerja`, `kode`, `tgl_mulai_perjalanan`, `tgl_berakhir_perjalanan`, `is_jabodetabek`, `jenis_transport`, `destinasi`, `item`, `nominal`, `created_at`, `updated_at`) VALUES
+(1, 1, 'SPD20210730225538', '2021-07-31 00:00:00', '2021-08-01 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Akomodasi', 225000, '2021-07-30 22:55:38', '2021-07-30 15:55:38'),
+(2, 1, 'SPD20210730225538', '2021-07-31 00:00:00', '2021-08-01 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Jabodetabek', 100000, '2021-07-30 22:55:38', '2021-07-30 15:55:38'),
+(3, 1, 'SPD20210730225538', '2021-07-31 00:00:00', '2021-08-01 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Non Jabodetabek', 75000, '2021-07-30 22:55:38', '2021-07-30 15:55:38');
 
 -- --------------------------------------------------------
 
@@ -338,7 +318,14 @@ INSERT INTO `sisa_cuti` (`id`, `id_pekerja`, `sisa_sebelumnya`, `created_at`, `u
 (2, 1, 20, '2021-07-06 18:24:16', '2021-07-06 11:26:33'),
 (3, 1, 19, '2021-07-06 18:26:50', '2021-07-06 11:26:50'),
 (4, 1, 18, '2021-07-06 18:29:52', '2021-07-06 11:29:52'),
-(5, 1, 17, '2021-07-08 09:07:26', '2021-07-08 02:07:26');
+(5, 1, 17, '2021-07-08 09:07:26', '2021-07-08 02:07:26'),
+(6, 1, 16, '2021-07-30 16:14:44', '2021-07-30 09:14:44'),
+(7, 1, 15, '2021-07-30 22:51:38', '2021-07-30 15:51:38'),
+(8, 1, 14, '2021-07-30 22:51:58', '2021-07-30 15:51:58'),
+(9, 1, 13, '2021-07-30 22:52:33', '2021-07-30 15:52:33'),
+(10, 1, 12, '2021-07-30 22:52:37', '2021-07-30 15:52:37'),
+(11, 1, 11, '2021-07-30 22:52:55', '2021-07-30 15:52:55'),
+(12, 1, 10, '2021-07-30 22:55:10', '2021-07-30 15:55:10');
 
 -- --------------------------------------------------------
 
@@ -637,7 +624,7 @@ ALTER TABLE `sub_spd`
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `master_pekerja`
@@ -649,7 +636,7 @@ ALTER TABLE `master_pekerja`
 -- AUTO_INCREMENT for table `rencana_perjalanan`
 --
 ALTER TABLE `rencana_perjalanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `rules_cuti`
@@ -661,7 +648,7 @@ ALTER TABLE `rules_cuti`
 -- AUTO_INCREMENT for table `sisa_cuti`
 --
 ALTER TABLE `sisa_cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `spd_golongan`
@@ -679,7 +666,7 @@ ALTER TABLE `spd_golongan_backup`
 -- AUTO_INCREMENT for table `spd_jabatan`
 --
 ALTER TABLE `spd_jabatan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `sub_spd`

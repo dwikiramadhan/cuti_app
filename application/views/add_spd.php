@@ -31,9 +31,15 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col">
-                                    <label class="col-form-label">Tanggal Perjalanan</label>
-                                    <input type="date" class="form-control" name="tgl_perjalanan" id="tgl_perjalanan" >
+                                    <label class="col-form-label">Tanggal Mulai Perjalanan</label>
+                                    <input type="date" class="form-control" name="tgl_mulai_perjalanan" id="tgl_mulai_perjalanan">
                                 </div>
+                                <div class="form-group col">
+                                    <label class="col-form-label">Tanggal Berakhir Perjalanan</label>
+                                    <input type="date" class="form-control" name="tgl_berakhir_perjalanan" id="tgl_berakhir_perjalanan">
+                                </div>
+                            </div>
+                            <div class="form-row">
                                 <div class="form-group col">
                                     <label class="col-form-label">Apakah Jabodetabek ?</label>
                                     <select name="is_jabodetabek" id="is_jabodetabek" class="form-control">
@@ -60,6 +66,7 @@
                                 <table id="table" class="table">
                                     <thead class="thead-dark">
                                         <tr>
+                                            <th>#</th>
                                             <th>Item</th>
                                             <th>Nominal</th>
                                         </tr>
@@ -105,9 +112,11 @@
                 },
                 dataType: 'json',
                 success: function(data) {
+                    console.log(data);
                     $('.table_row').remove();
                     $.each(data.reverse(), function(i, item) {
-                        $bodyTable.after('<tr class="table_row"><td>' + item.item + '</td><td>' + item.nominal + '</td></tr>')
+                        const valCheck = item.item + ',' + item.nominal;
+                        $bodyTable.after('<tr class="table_row"><td><input type="checkbox" name="choose[]" value="' + valCheck + '"></td><td>' + item.item + '</td><td>' + item.nominal + '</td></tr>')
                     })
 
                     console.log(data);

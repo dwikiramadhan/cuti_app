@@ -32,9 +32,9 @@
                                     <?php
                                     $no = 1;
                                     foreach ($record as $key) {
-                                        $thn_mulai = $key->tmt_gol_upah != NULL ? date('m-Y', strtotime($key->tmt_gol_upah)) : '';
-                                        if ($key->tmt_gol_upah != NULL) {
-                                            $tgl_awal = new DateTime($key->tmt_gol_upah);
+                                        $thn_mulai = $key->tmt_pwtt != NULL ? date('m-Y', strtotime($key->tmt_pwtt)) : '';
+                                        if ($key->tmt_pwtt != NULL) {
+                                            $tgl_awal = new DateTime($key->tmt_pwtt);
                                             $tgl_now = new DateTime('today');
                                             $lama_bekerja = $tgl_now->diff($tgl_awal)->y;
                                             $mod = (int)$lama_bekerja % 3;

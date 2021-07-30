@@ -21,11 +21,7 @@
                                         <th>No</th>
                                         <th>Pekerja</th>
                                         <th>Tanggal Perjalanan</th>
-                                        <th>Item</th>
-                                        <th>Is Jabodetabek</th>
-                                        <th>Jenis Transport</th>
-                                        <th>Destinasi</th>
-                                        <th>Nominal</th>
+                                        <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -36,12 +32,8 @@
                                         <tr>
                                             <td><?= $no ?></td>
                                             <td><?= $key->nama_pekerja ?></td>
-                                            <td><?= $key->tgl_perjalanan ?></td>
-                                            <td><?= $key->item ?></td>
-                                            <td><?= $key->is_jabodetabek ?></td>
-                                            <td><?= $key->jenis_transport ?></td>
-                                            <td><?= $key->destinasi ?></td>
-                                            <td><?= $key->nominal ?></td>
+                                            <td><?= date('d-m-Y', strtotime($key->tgl_mulai_perjalanan)) ?> s/d <?= date('d-m-Y', strtotime($key->tgl_berakhir_perjalanan)) ?></td>
+                                            <td><a class="btn btn-primary" href="<?php echo base_url(); ?>spd/detail/<?=$key->kode?>"><i class="fa fa-eye"></i></a></td>
                                         </tr>
                                     <?php
                                         $no++;
