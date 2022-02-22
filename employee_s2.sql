@@ -2,8 +2,8 @@
 -- version 4.9.7
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Jul 30, 2021 at 03:56 PM
+-- Host: localhost:3307
+-- Generation Time: Nov 21, 2021 at 05:11 PM
 -- Server version: 5.7.32
 -- PHP Version: 7.4.12
 
@@ -41,7 +41,8 @@ CREATE TABLE `cuti` (
 --
 
 INSERT INTO `cuti` (`id`, `id_pekerja`, `tgl_cuti`, `keterangan`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, '2021-07-31', 'Pindahan', 1, '2021-07-30 22:55:10', '2021-07-30 15:55:10');
+(1, 1, '2021-07-31', 'Pindahan', 1, '2021-07-30 22:55:10', '2021-07-30 15:55:10'),
+(2, 1, '2021-11-26', 'Holiday', 1, '2021-11-22 00:01:16', '2021-11-21 17:01:16');
 
 -- --------------------------------------------------------
 
@@ -270,7 +271,11 @@ CREATE TABLE `rencana_perjalanan` (
 INSERT INTO `rencana_perjalanan` (`id`, `id_pekerja`, `kode`, `tgl_mulai_perjalanan`, `tgl_berakhir_perjalanan`, `is_jabodetabek`, `jenis_transport`, `destinasi`, `item`, `nominal`, `created_at`, `updated_at`) VALUES
 (1, 1, 'SPD20210730225538', '2021-07-31 00:00:00', '2021-08-01 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Akomodasi', 225000, '2021-07-30 22:55:38', '2021-07-30 15:55:38'),
 (2, 1, 'SPD20210730225538', '2021-07-31 00:00:00', '2021-08-01 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Jabodetabek', 100000, '2021-07-30 22:55:38', '2021-07-30 15:55:38'),
-(3, 1, 'SPD20210730225538', '2021-07-31 00:00:00', '2021-08-01 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Non Jabodetabek', 75000, '2021-07-30 22:55:38', '2021-07-30 15:55:38');
+(3, 1, 'SPD20210730225538', '2021-07-31 00:00:00', '2021-08-01 00:00:00', 'Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Non Jabodetabek', 75000, '2021-07-30 22:55:38', '2021-07-30 15:55:38'),
+(4, 1, 'SPD20211122001102', '2021-11-23 00:00:00', '2021-11-24 00:00:00', 'Non Jabodetabek', 'transport_bandara', 'Jakarta', 'Akomodasi', 225000, '2021-11-22 00:11:02', '2021-11-21 17:11:02'),
+(5, 1, 'SPD20211122001102', '2021-11-23 00:00:00', '2021-11-24 00:00:00', 'Non Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Jabodetabek', 100000, '2021-11-22 00:11:02', '2021-11-21 17:11:02'),
+(6, 1, 'SPD20211122001102', '2021-11-23 00:00:00', '2021-11-24 00:00:00', 'Non Jabodetabek', 'transport_bandara', 'Jakarta', 'Transport Lokal Non Jabodetabek', 75000, '2021-11-22 00:11:02', '2021-11-21 17:11:02'),
+(7, 1, 'SPD20211122001102', '2021-11-23 00:00:00', '2021-11-24 00:00:00', 'Non Jabodetabek', 'transport_bandara', 'Jakarta', 'Makan Pagi', 50000, '2021-11-22 00:11:02', '2021-11-21 17:11:02');
 
 -- --------------------------------------------------------
 
@@ -325,7 +330,8 @@ INSERT INTO `sisa_cuti` (`id`, `id_pekerja`, `sisa_sebelumnya`, `created_at`, `u
 (9, 1, 13, '2021-07-30 22:52:33', '2021-07-30 15:52:33'),
 (10, 1, 12, '2021-07-30 22:52:37', '2021-07-30 15:52:37'),
 (11, 1, 11, '2021-07-30 22:52:55', '2021-07-30 15:52:55'),
-(12, 1, 10, '2021-07-30 22:55:10', '2021-07-30 15:55:10');
+(12, 1, 10, '2021-07-30 22:55:10', '2021-07-30 15:55:10'),
+(13, 1, 9, '2021-11-22 00:01:16', '2021-11-21 17:01:16');
 
 -- --------------------------------------------------------
 
@@ -624,7 +630,7 @@ ALTER TABLE `sub_spd`
 -- AUTO_INCREMENT for table `cuti`
 --
 ALTER TABLE `cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `master_pekerja`
@@ -636,7 +642,7 @@ ALTER TABLE `master_pekerja`
 -- AUTO_INCREMENT for table `rencana_perjalanan`
 --
 ALTER TABLE `rencana_perjalanan`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `rules_cuti`
@@ -648,7 +654,7 @@ ALTER TABLE `rules_cuti`
 -- AUTO_INCREMENT for table `sisa_cuti`
 --
 ALTER TABLE `sisa_cuti`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `spd_golongan`
